@@ -15,4 +15,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AcunmedyaLisesi.Data\AcunmedyaLisesi.Data.csproj" />
+    <ProjectReference Include="..\YeniAcunmedyaLisesi.Models\YeniAcunmedyaLisesi.Models.csproj" />
+  </ItemGroup>
+
 </Project>
