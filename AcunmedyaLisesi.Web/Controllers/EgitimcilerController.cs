@@ -8,5 +8,18 @@ namespace AcunmedyaLisesi.Web.Controllers
         {
             return View();
         }
+        public IActionResult Add()
+        {
+            return View();
+        }
+        public IActionResult Update()
+        {
+            return View();
+        }
+
+        public IActionResult Delete()
+        {
+            return View();
+        }
     }
 }
