@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YeniAcunmedyaLisesi.Models"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcunmedyaLisesi.Data", "AcunmedyaLisesi.Data\AcunmedyaLisesi.Data.csproj", "{E19B2E97-3EED-4D8E-B427-DA4714AC29C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcunmedyaLisesi.Repository", "AcunmedyaLisesi.Repository\AcunmedyaLisesi.Repository.csproj", "{27967282-8FC2-4111-A446-803E2F399A32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcunmedyaLisesi.Repository", "AcunmedyaLisesi.Repository\AcunmedyaLisesi.Repository.csproj", "{27967282-8FC2-4111-A446-803E2F399A32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcunmedyaUzmanlık.Business", "AcunmedyaUzmanlık.Business\AcunmedyaUzmanlık.Business.csproj", "{BD37F316-0B5B-48E1-9432-137A86BEE038}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{27967282-8FC2-4111-A446-803E2F399A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27967282-8FC2-4111-A446-803E2F399A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27967282-8FC2-4111-A446-803E2F399A32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD37F316-0B5B-48E1-9432-137A86BEE038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD37F316-0B5B-48E1-9432-137A86BEE038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD37F316-0B5B-48E1-9432-137A86BEE038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD37F316-0B5B-48E1-9432-137A86BEE038}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
