@@ -28,7 +28,6 @@ namespace AcunmedyaUzmanlık.Business.Shared.Concrete
         public List<T> AddRange(List<T> entities)
         {
             _repo.AddRange(entities);
-            Save();
             return entities;
         }
 
