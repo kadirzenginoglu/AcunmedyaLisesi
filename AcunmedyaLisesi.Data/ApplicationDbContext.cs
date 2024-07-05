@@ -24,7 +24,7 @@ namespace AcunmedyaLisesi.Data
         public virtual DbSet<Fen> Fens { get; set; }
         public virtual DbSet<Matematik> Matematiks { get; set; }
         public virtual DbSet<Ogrenciler> Ogrencies { get; set; }
-        public virtual DbSet<Sınavlar> Sınavlars { get; set; }
+        public virtual DbSet<Sinavlar> Sınavlars { get; set; }
 
 
 

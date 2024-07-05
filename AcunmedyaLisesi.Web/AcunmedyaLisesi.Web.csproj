@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AcunmedyaLisesi.Data\AcunmedyaLisesi.Data.csproj" />
+    <ProjectReference Include="..\AcunmedyaLisesi.Repository\AcunmedyaLisesi.Repository.csproj" />
+    <ProjectReference Include="..\AcunmedyaUzmanlık.Business\AcunmedyaUzmanlık.Business.csproj" />
     <ProjectReference Include="..\YeniAcunmedyaLisesi.Models\YeniAcunmedyaLisesi.Models.csproj" />
   </ItemGroup>
 

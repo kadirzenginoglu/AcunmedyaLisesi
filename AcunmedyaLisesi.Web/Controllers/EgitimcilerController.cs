@@ -1,25 +1,35 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AcunmedyaLisesi.Web.Models;
+using AcunmedyaUzmanlık.Business.Shared.Abstract;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AcunmedyaLisesi.Web.Controllers
 {
     public class EgitimcilerController : Controller
     {
+        private readonly IService<Egitimciler> _service;
+
+        public EgitimcilerController(IService<Egitimciler> service)
+        {
+            _service = service;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult Add()
+        public IActionResult Add(Egitimciler egitimciler)
         {
-            return View();
+            return Ok(_service.Add(egitimciler));
         }
-        public IActionResult Update()
+        public IActionResult Update(Egitimciler egitimciler)
         {
-            return View();
+            return Ok(_service.Update(egitimciler));
         }
 
-        public IActionResult Delete()
+        public IActionResult Delete(Egitimciler egitimciler)
         {
-            return View();
+            _service.Delete(egitimciler.Id);
+            return Ok();
         }
     }
 }

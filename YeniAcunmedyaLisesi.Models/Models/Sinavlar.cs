@@ -1,6 +1,6 @@
 ﻿namespace AcunmedyaLisesi.Web.Models
 {
-    public class Sınavlar : BaseModel
+    public class Sinavlar : BaseModel
     {
         public int OgrenciId { get; set; }
         public int FenId { get; set; }

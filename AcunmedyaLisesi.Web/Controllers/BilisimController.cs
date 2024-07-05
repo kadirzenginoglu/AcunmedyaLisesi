@@ -1,26 +1,39 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AcunmedyaLisesi.Web.Models;
+using AcunmedyaUzmanlık.Business.Shared.Abstract;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AcunmedyaLisesi.Web.Controllers
 {
     public class BilisimController : Controller
     {
+        private readonly IService<Bilisim> _service;
+
+        public BilisimController(IService<Bilisim> service)
+        {
+            _service = service;
+        }
+
         public IActionResult Index()
         {
+
             return View();
         }
 
-        public IActionResult Add()
+        public IActionResult Add(Bilisim bilisim)
         {
-            return View();
+            return Ok(_service.Add(bilisim));
+            
         }
-        public IActionResult Update()
+        public IActionResult Update(Bilisim bilisim)
         {
-            return View();
+            return Ok( _service.Update(bilisim));
+            
         }
 
-        public IActionResult Delete()
+        public IActionResult Delete(Bilisim bilisim)
         {
-            return View();
+            _service.Delete(bilisim.Id);
+            return Ok();
         }
     }
 }

@@ -1,25 +1,35 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AcunmedyaLisesi.Web.Models;
+using AcunmedyaUzmanlık.Business.Shared.Abstract;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AcunmedyaLisesi.Web.Controllers
 {
     public class OgrencilerController : Controller
     {
+        private readonly IService<Ogrenciler> _service;
+
+        public OgrencilerController(IService<Ogrenciler> service)
+        {
+            _service = service;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult Add()
+        public IActionResult Add(Ogrenciler ogrenciler)
         {
-            return View();
+            return Ok(_service.Add(ogrenciler));
         }
-        public IActionResult Update()
+        public IActionResult Update(Ogrenciler ogrenciler)
         {
-            return View();
+            return Ok(_service.Update(ogrenciler));
         }
 
-        public IActionResult Delete()
+        public IActionResult Delete(Ogrenciler ogrenciler)
         {
-            return View();
+            _service.Delete(ogrenciler.Id);
+            return Ok();
         }
 
 

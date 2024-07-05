@@ -12,6 +12,6 @@
         public virtual Matematik Matematik { get; set; }
         public virtual Fen Fen { get; set; }
         public virtual Bilisim Bilisim { get; set; }
-        public ICollection<Sınavlar> Sınavlar { get; set; } = [];
+        public ICollection<Sinavlar> Sınavlar { get; set; } = [];
     }
 }

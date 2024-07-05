@@ -41,7 +41,7 @@ namespace AcunmedyaLisesi.Repository.Shared.Concrete
         {
             T entity = _dbSet.Find(id);
             entity.IsDeleted = true;
-            _dbSet.Update(entity);
+            _dbSet.Remove(entity);
             Save();
         }
 

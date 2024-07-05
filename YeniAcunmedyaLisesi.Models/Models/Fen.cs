@@ -7,7 +7,7 @@
         public int EgitimciId { get; set; }
         public ICollection<Egitimciler> Egitimciler { get; set; } = [];
         public ICollection<Ogrenciler> Ogrenciler { get; set; } = [];
-        public ICollection<Sınavlar> Sınavlars { get; set; } = [];
+        public ICollection<Sinavlar> Sınavlars { get; set; } = [];
 
 
     }
