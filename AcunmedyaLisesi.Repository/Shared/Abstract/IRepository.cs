@@ -21,6 +21,8 @@ namespace AcunmedyaLisesi.Repository.Shared.Abstract
         T GetFirstOrDefault(Expression<Func<T, bool>> predicate);
         void Save();
 
+        ICollection<T> GetByName(string name);
+
 
     }
 

@@ -2,6 +2,7 @@
 using AcunmedyaLisesi.Web.Models;
 using AcunmedyaUzmanlık.Business.Shared.Abstract;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,11 @@ namespace AcunmedyaUzmanlık.Business.Shared.Concrete
             return _repo.GetById(id);
         }
 
+        public ICollection<T> GetByName(string name)
+        {
+            return _repo.GetByName(name).ToList();
+        }
+
         public T GetFirstOrDefault(Expression<Func<T, bool>> predicate)
         {
             return _repo.GetFirstOrDefault(predicate);
@@ -54,5 +60,7 @@ namespace AcunmedyaUzmanlık.Business.Shared.Concrete
         {
             return _repo.Update(entity);
         }
+
+        
     }
 }

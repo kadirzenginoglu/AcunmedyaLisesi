@@ -31,6 +31,12 @@ namespace AcunmedyaLisesi.Web.Controllers
             _service.Delete(ogrenciler.Id);
             return Ok();
         }
+        
+        public IActionResult GetByName(string name)
+        {
+            List<Ogrenciler> ogrenciler = _service.GetByName(name);
+            return Ok(ogrenciler);
+        }
 
 
 

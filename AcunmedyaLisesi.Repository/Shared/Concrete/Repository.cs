@@ -1,5 +1,6 @@
 ﻿using AcunmedyaLisesi.Data;
 using AcunmedyaLisesi.Repository.Shared.Abstract;
+using AcunmedyaLisesi.Repository.Shared.Concrete;
 using AcunmedyaLisesi.Web.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -55,6 +56,11 @@ namespace AcunmedyaLisesi.Repository.Shared.Concrete
             return _dbSet.Find(id);
         }
 
+        public ICollection<T> GetByName(string name)
+        {
+            return _dbSet.Where(x=>x.Name==name).ToList();
+        }
+
         public T GetFirstOrDefault(Expression<Func<T, bool>> predicate)
         {
             return _dbSet.FirstOrDefault(predicate);
@@ -73,3 +79,19 @@ namespace AcunmedyaLisesi.Repository.Shared.Concrete
         }
     }
 }
+    //Ev (repository)
+
+    //Salon - Class
+    //[koltuk, yemek masası] - Repository (Business) (Misafir(User))
+    //Oturma Odası - Class- Class
+    //[Kanepe Tv Çekyat Sehpa]- Repository (Business)(Ev Sahibi(Admin)
+    //Yatak Odası- Class- Class
+    //[Yatak Gardılop Tuvalet Masası]- Repository (Business)
+    //Çocuk Odası- Class- Class
+    //[Dolap Yatak Çalışma Masası]- Repository (Business
+    //Banyo- Class- Class
+    //[Duşakabin tuvalet lavabo]- Repository (Business)
+    //Tuvalet- Class- Class
+    //[Tuvalet] - Repository(Business)
+    //Mutfak- Class- Class
+    //[Tezgah Dolaplar Beyaz eşya] - Repository(Business)

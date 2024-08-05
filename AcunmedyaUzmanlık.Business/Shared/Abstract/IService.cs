@@ -18,6 +18,8 @@ namespace AcunmedyaUzmanlık.Business.Shared.Abstract
         T GetById(int id);
 
         T GetFirstOrDefault(Expression<Func<T, bool>> predicate);
+
+        List<T> GetByName(string name);
         
     }
 }

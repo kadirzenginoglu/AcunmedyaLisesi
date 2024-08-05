@@ -2,7 +2,7 @@
 using AcunmedyaUzmanlık.Business.Shared.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AcunmedyaLisesi.Web.Controllers
+namespace AcunmedyaLisesi.Web.Areas.Ogretmen.Controllers
 {
     public class SinavlarController : Controller
     {
@@ -21,19 +21,27 @@ namespace AcunmedyaLisesi.Web.Controllers
         {
             return Ok(_service.Add(sinavlar));
         }
+
         public IActionResult Update(Sinavlar sinavlar)
         {
-            return Ok(_service.Update(sinavlar));
+            _service.Update(sinavlar);
+            return Ok(sinavlar);
         }
 
-        public IActionResult Delete(Sinavlar sinavlar)
+        public IActionResult Delete(int id)
         {
-            _service.Delete(sinavlar.Id);
+            _service.Delete(id);
             return Ok();
         }
-        public IActionResult GetAll(Sinavlar sinavlar)
+
+        public IActionResult GetAll()
         {
-           return Json(new { data = _service.GetAll() });
+            return Json(_service.GetAll());
         }
+
+
+
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AcunmedyaLisesi.Web.Models;
 using AcunmedyaUzmanlık.Business.Shared.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AcunmedyaLisesi.Web.Controllers
@@ -25,7 +26,7 @@ namespace AcunmedyaLisesi.Web.Controllers
         {
             return Ok(_service.Update(egitimciler));
         }
-
+        //[Authorize("Admin")]- Misafire("User") bu controllerda çalışma imkanının önüne geçmiş oluyoruz.
         public IActionResult Delete(Egitimciler egitimciler)
         {
             _service.Delete(egitimciler.Id);
@@ -33,3 +34,19 @@ namespace AcunmedyaLisesi.Web.Controllers
         }
     }
 }
+//Ev (repository)
+
+//Salon - Class
+//[koltuk, yemek masası] - Repository (Business) (Misafir(User))
+//Oturma Odası - Class- Class
+//[Kanepe Tv Çekyat Sehpa]- Repository (Business)(Ev Sahibi(Admin)
+//Yatak Odası- Class- Class
+//[Yatak Gardılop Tuvalet Masası]- Repository (Business)
+//Çocuk Odası- Class- Class
+//[Dolap Yatak Çalışma Masası]- Repository (Business
+//Banyo- Class- Class
+//[Duşakabin tuvalet lavabo]- Repository (Business)
+//Tuvalet- Class- Class
+//[Tuvalet] - Repository(Business)
+//Mutfak- Class- Class
+//[Tezgah Dolaplar Beyaz eşya] - Repository(Business)

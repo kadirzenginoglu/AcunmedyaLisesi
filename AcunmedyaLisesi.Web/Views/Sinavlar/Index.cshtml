@@ -1,0 +1,204 @@
+﻿<div class="card">
+    <div class="card-header bg-primary text-white text-center">Durumlar</div>
+    <div class="card-body">
+        <a href="#" id="btnEkle" class="btn btn-success mb-3">EKLE</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>İşlemler</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+
+
+
+
+    </div>
+    <div class="card-footer">-</div>
+</div>
+
+<div class="modal fade" id="modalEkle" tabindex="-1" data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    role="dialog"
+    aria-labelledby="modalTitleId"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+        role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">
+                        Yeni Durum Ekle
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" arial-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <input type="text" id="txtSinavlarName" class="form-control" placeholder="Lütfen DurumAdı Giriniz" />
+                    <input type="text" id="txtSinavlarName" class="form-control" placeholder="Lütfen DurumAdı Giriniz" />
+                    <input type="text" id="txtSinavlarName" class="form-control" placeholder="Lütfen DurumAdı Giriniz" />
+                    <input type="text" id="txtSinavlarName" class="form-control" placeholder="Lütfen DurumAdı Giriniz" />
+                    <input type="text" id="txtSinavlarName" class="form-control" placeholder="Lütfen DurumAdı Giriniz" />
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <a href="#" id="btnSave" class="btn btn-primary">Kaydet</a>
+                </div>
+
+
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        fillTable();
+
+        $("#btnEkle").click(function () {
+            $("#modalEkle").modal("show");
+            $("#btnSave").text("Kaydet").removaClass("btn-success").addClass("btn-primary").off().click(kaydet);
+            $("#txtSinavlarName").val("");
+        });
+
+
+        $("#btnSave").click(kaydet);
+
+        function kaydet() {
+            let Name = $("#txtSinavlarName").val();
+            $.ajax({
+                url: '/Sinavlar/Add',
+                type: 'POST',
+                data: {name:Name},
+                success: function (res) {
+                    console.log(res);
+
+                    $("#modalEkle").modal('hide');
+                    $("#txtSinavlarName").val("");
+                    $("#tbody").append(`
+                                                            <tr>
+                                                                <td>${res}</td>
+                                                                         <td>${res.Name}</td>
+                                                                 <td><a onclick="deleteSinavlar(${res},this)" href="#" class="btn btn-danger">Sil</a>
+                                                                                  <a onclick="updateSinavlar(${res},this,'${res.Name}')" href="#" class="btn btn-warning">Düzenle</a>
+                                                                 </td>
+                                                            </tr>
+
+                                                            `);
+                }
+            })
+        }
+
+        function deleteSinavlar(id, element) {
+
+            if (confirm("Silmek istediğinizden emin misiniz")) {
+
+                $.ajax({
+                    url:'/Sinavlar/Delete',
+                    type:'POST',
+                    data: {id:id},
+                    success: function () {
+                        $(element).parent().parent().remove();
+                    }
+                })
+            }
+
+        }
+        function updateSinavlar(id, element, sinavlarName) {
+            $("#modalEkle").modal("show");
+            $("#txtSinavlarName").val(sinavlarName);
+            $("#btnSave").text("Güncelle").removeClass("btn-primary").addClass("btn-success").off().click(function () {
+                $.ajax({
+                    url: '/Sinavlar/Update',
+                    type: 'POST',
+                    data: { id: id, name: $("#txtSinavlarName").val() },
+                    success: function () {
+                        $("#modalEkle").modal("hide");
+                        $(element).parent().parent().children()[1].innerText = $("#txtSinavlarName").val();
+
+                    }
+                })
+            }); 
+        }
+
+
+
+        function fillTable() {
+            $.ajax({
+                url: '/Sinavlar/GetAll',
+                type: 'GET',
+                success: function (res) {
+                    $("tbody").append(`
+                                            <tr>
+                                                <td>${item.id}</td>
+                                                         <td ondblclick="updateSinavlarInline(${item.id},this)" >${item.name}</td>
+                                                         <td>
+                                              <a onclick="deleteSinavlar(${item.id},this)" href="#" class="btn btn-danger">Sil</a>
+                                            <a onclick="updateSinavlar(${item.id},this,'${item.name}')" href="#" class="btn btn-warning">Düzenle</a></td>
+                                            </tr>
+
+                                            `);
+                }
+            })
+        }
+
+        function updateSinavlarInline(id, element) {
+            $(element).attr("contentEditable", "true");
+            $(element).parent().addClass("bg-info");
+            $(element).addClass("bg-dark").addClass("text-white");
+            $(element).focus();
+            $(element).one().focusout(function () {
+
+                $(element).removeAttr("contentEditable");
+                $(element).parent().removeClass("bg-info");
+                $(element).removeClass("bg-dark").removeClass("text-white");
+                $.ajax({
+                    url: '/Sinavlar/Update',
+                    type: 'POST',
+                    data: { id: id, name: $(element).text() },
+                    success: function (res) {
+
+                    }
+
+                });
+
+
+
+
+
+
+            });
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+}
