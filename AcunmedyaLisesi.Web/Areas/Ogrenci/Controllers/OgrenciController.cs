@@ -1,6 +1,7 @@
 ﻿using AcunmedyaLisesi.Web.Models;
 using AcunmedyaUzmanlık.Business.Shared.Abstract;
 using Microsoft.AspNetCore.Mvc;
+using YeniAcunmedyaLisesi.Models.Dto;
 
 namespace AcunmedyaLisesi.Web.Areas.Ogrenci.Controllers
 {
@@ -17,16 +18,25 @@ namespace AcunmedyaLisesi.Web.Areas.Ogrenci.Controllers
         {
             return View();
         }
-        public IActionResult Login (Ogrenciler ogrenciler)
-        {
-            return View();
-
-        }
+        
 
         public IActionResult GetAll()
         {
             return Json(_service.GetAll());
         }
+
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login (LoginDto loginDto)
+        {
+            return Ok(loginDto);
+        }
+
 
 
 

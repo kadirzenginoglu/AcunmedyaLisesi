@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AcunmedyaLisesi.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240726171948_Projeyenilendi")]
-    partial class Projeyenilendi
+    [Migration("20240810173838_Yenidenyapıldı")]
+    partial class Yenidenyapıldı
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -127,6 +127,34 @@ namespace AcunmedyaLisesi.Data.Migrations
                     b.HasIndex("OgrencilerId");
 
                     b.ToTable("Dersler");
+                });
+
+            modelBuilder.Entity("YeniAcunmedyaLisesi.Models.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("AcunmedyaLisesi.Web.Models.Egitimciler", b =>

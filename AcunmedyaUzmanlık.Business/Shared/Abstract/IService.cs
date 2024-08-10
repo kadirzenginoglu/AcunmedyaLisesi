@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using YeniAcunmedyaLisesi.Models.Dto;
 
 namespace AcunmedyaUzmanlık.Business.Shared.Abstract
 {
@@ -20,6 +21,7 @@ namespace AcunmedyaUzmanlık.Business.Shared.Abstract
         T GetFirstOrDefault(Expression<Func<T, bool>> predicate);
 
         List<T> GetByName(string name);
+        
         
     }
 }
