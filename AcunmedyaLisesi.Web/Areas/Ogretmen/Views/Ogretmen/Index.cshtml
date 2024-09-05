@@ -1,0 +1,138 @@
+﻿
+<div class="card">
+    <div class="card-header bg-warning text-center fs-4">Öğrenci Listesi</div>
+    <div class="card-body">
+        <a href="#" id="btnEkle" class="btn btn-success">Ekle</a>
+
+        <table class="table table-bordered table-hover table-striped">
+        </table>
+
+    </div>
+
+
+
+</div>
+
+<div class="modal fade" id="modalEkle" tabindex="-1" data-bs-backdrop="static"
+     data-bs-keyboard="false"
+     role="dialog"
+     aria-labelledby="modalTitleId"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="frmAddUser">
+
+                    <div class="mb-3 row">
+                        <label class="form-label" for="txtFullName">Öğrenci Adı Soyad : </label>
+                        <input type="text" id="txtFullName" class="form-control" data-parsley-pattern-message="Ad ve Soyad baş harfleri büyük, geri kalanı küçük olmalı Örn: Emre Özçelikel" placeholder="Üye adını giriniz" />
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="form-label" for="txtnumber"> Öğrenci Numarası : </label>
+                        <input id="txtnumber" required class="form-control input-mask" data-inputmask="'alias': 'number'" placeholder="Lütfen öğrenci numarası giriniz" />
+                    </div>
+
+                    <div class="mb-3 row">
+
+
+                        <label class="form-label" for="ddldersId">Öğrencinin Aldığı Dersler :</label>
+                        <select id="ddldersId" data-parsley-min-message="Ders seçmek zorunludur" required class="form-select">
+                        </select>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Kapat </button>
+                <a id="btnSave" class="btn btn-primary"> Kaydet </a>
+            </div>
+        </div>
+    </div>
+</div>              
+
+@section Scripts {
+    <script>
+        var DataTable = "";
+        $(document).ready(function () {
+            DataTable = $("table").DataTable({
+                ajax: {
+                    url: '/Ogretmen/GetAll',
+                    dataSrc: ''
+                },
+                columns: [
+                    { data: "name", title: "Ogretmenin Adı Soyadı" },
+                    { data: "dersler", title: "Girdiği Dersin Adı Soyadı" },
+                    {
+                        data: "id", title: "İşlemler", render: function (egitimciler) {
+                            return `
+                                                                     <a href="#" class="btn btn-sm btn-warning" onclick="update(${egitimciler}, this)">Düzenle</a>
+                                                                     <a href="#" class="btn btn-sm btn-danger" onclick="remove(${egitimciler}, this)">Sil</a>
+                                                             `;
+                        }
+                    }
+                ],
+
+
+            });
+            $("#btnEkle").click(function () {
+                $("#modalEkle").modal("show");
+                $("#modalTitleId").text("Yeni Eğitimci Ekle");
+
+
+                $("#btnSave").off().click(function () {
+                    if ($("#txt").parsley().validate()) {
+
+                        var base64String = reader.result;
+                        $.ajax({
+                            url: "/Ogretmen/Index",
+                            type: "POST",
+                            data: {
+                                appUser: {
+                                    name: $("#txtName").val(),
+                                    dersler: $("#ddldersId").val(),
+                                }
+                            },
+
+                            success: function () {
+
+                                DataTable.row.add(res).draw();
+                                $("#modalEkle").modal("hide");
+                                toastr.success('Basariyla Eklendi')
+                            }
+                        });
+
+                    }
+
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+}

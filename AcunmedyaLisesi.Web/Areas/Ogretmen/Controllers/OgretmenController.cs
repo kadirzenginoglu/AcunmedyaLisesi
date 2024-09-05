@@ -2,6 +2,7 @@
 using AcunmedyaUzmanlık.Business.Shared.Abstract;
 using AcunmedyaUzmanlık.Business.Shared.Service.Abstract;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using YeniAcunmedyaLisesi.Models.Dto;
 using YeniAcunmedyaLisesi.Models.Models;
 
@@ -37,7 +38,7 @@ namespace AcunmedyaLisesi.Web.Areas.Ogretmen.Controllers
                 return RedirectToAction("Login");
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Ogretmen", new { area = User.FindFirstValue(ClaimTypes.Role) });
         }
 
 
